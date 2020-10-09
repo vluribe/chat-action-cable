@@ -1,0 +1,10 @@
+<div class="card">
+    <div class="card-body">
+        <small>Logged in as: </small>
+        <%if @user%>
+            <b><%=@user.name%></b>
+        <%else%>
+            <b> Here user name</b>
+        <%end%>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<%=form_for message, html: { autocomplete: "off" }, url:{controller: "messages", action: "create"}, local: true do |f|%>
+    <%= f.hidden_field :room_id, value: room.id %>
+    <div class="input-group">
+        <%= f.text_field :text, required: true, placeholder: "Type your message here...", class: 'form-control', autofocus: true %>
+        <div class="input-group-append">
+        <%= f.submit "Send", class: "btn btn-success" %>
+        </div>
+    </div>
+<%end%>

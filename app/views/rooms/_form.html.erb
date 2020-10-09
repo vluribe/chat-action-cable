@@ -1,0 +1,7 @@
+<%=form_for room, html: { autocomplete: "off" }, url:{action: "create"}, local: true do |f| %>
+    <div clas="form-group">
+        <%=f.label "Add new room:"%>
+        <%=f.text_field :name, required: true, class: "form-control", placeholder: "Room name"%>
+    </div>
+    <%=f.submit "Add", class: "btn btn-block btn-success mt-2"%>
+<%end%>
