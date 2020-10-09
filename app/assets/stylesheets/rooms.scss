@@ -1,0 +1,58 @@
+// Place all the styles related to the rooms controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+#welcome-message{
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    background-color: #28a745;
+    color: white;
+}
+
+#welcome-message h1{
+    margin: auto;
+}
+
+.rooms-list a:hover{
+    text-decoration: none;
+}
+
+.rooms-list .card{
+    color: #28a745;
+}
+
+.rooms-list .card:hover{
+    color: white;
+    background-color: #28a745;
+}
+
+#message-area{
+    height: 100vh;
+    position: relative;
+    //background: black;
+}
+
+#side-bar{
+    height: 100vh;
+}
+
+#room-title b{
+    color: white;
+}
+
+.rooms-list{
+    overflow: auto;
+    height: 40vh;
+}
+
+#room-messages{
+    margin-top: 5px;
+    height: 80vh;
+    overflow: auto;
+}
+
+.chat-box{
+    position: absolute;
+    width: 97%;
+    bottom: 20px;
+}
