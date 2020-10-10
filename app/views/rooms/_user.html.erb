@@ -1,8 +1,8 @@
 <div class="card">
     <div class="card-body">
         <small>Logged in as: </small>
-        <%if @user%>
-            <b><%=@user.name%></b>
+        <%if current_user%>
+            <b><%=current_user.name%></b>
         <%else%>
             <b> Here user name</b>
         <%end%>

@@ -18,7 +18,9 @@
                     </a>
                 <%end%>
             </div>
-            <button class="btn btn-block btn-success mt-5"> <strong>Log out</strong></button>
+            <button class="btn btn-block btn-success mt-5"> 
+            <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+            </button>
         </div>
         <div id="message-area" class="col-9 <%=@room.present? ? "" : "bg-success"%>">
             <%if @room.present?%>
