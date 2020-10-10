@@ -1,8 +1,22 @@
-<div class="message me mb-2">
-    <div class="content">
-        <div class="text">
-            <p><strong><%=message.sent_by%></strong></p> <br>
-            <p><%=message.text%></p>
+
+<%if (message.sent_by == current_user.id)%>
+    <div class="message me mb-2">
+        <div class="content">
+            <div class="text">
+                <p><%=message.text%></p>
+            </div>
         </div>
     </div>
-</div>
+<%else%>
+    <div class="message others mb-2">
+        <div class="content">
+            <div class="text">
+                <p><strong><%=User.find(message.sent_by).name%></strong></p> <br>
+                <p><%=message.text%></p>
+            </div>
+        </div>
+    </div>
+<%end%>
+
+            
+        
