@@ -16,7 +16,7 @@ class RoomsController < ApplicationController
     def create
         @room = Room.new(room_params)
         if !(@room.valid?)
-            @ex = Room.find_by(name: 'general')
+            @ex = Room.find_by(name: @room.name)
             redirect_to "/rooms/"+@ex.id.to_s
         else
             if @room.save
