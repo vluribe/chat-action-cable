@@ -3,9 +3,10 @@ class MessagesController < ApplicationController
     def create
         @message = Message.new(message_params)
         @message.sent_by = current_user.id
-        @message.save
-        SendMessageJob.perform_later(@message)
-        redirect_to request.referrer
+        if @message.save
+            SendMessageJob.perform_later(@message)
+            redirect_to request.referrer  
+        end
     end
 
     private
