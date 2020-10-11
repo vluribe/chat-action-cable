@@ -17,7 +17,7 @@ class RoomsController < ApplicationController
         @room = Room.new(room_params)
         if !(@room.valid?)
             @ex = Room.find_by(name: 'general')
-            redirect_to "/rooms/<%=@ex.id%>"
+            redirect_to "/rooms/"+@ex.id
         else
             if @room.save
                 redirect_to action: :show, id: @room.id
