@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_10_221406) do
+ActiveRecord::Schema.define(version: 2020_10_12_145437) do
 
   create_table "messages", force: :cascade do |t|
     t.text "text"
@@ -33,6 +33,17 @@ ActiveRecord::Schema.define(version: 2020_10_10_221406) do
     t.index ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "recipient_id"
+    t.string "action"
+    t.string "notifiable_type"
+    t.integer "notifiable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -53,4 +64,5 @@ ActiveRecord::Schema.define(version: 2020_10_10_221406) do
   end
 
   add_foreign_key "messages", "rooms"
+  add_foreign_key "notifications", "users"
 end
