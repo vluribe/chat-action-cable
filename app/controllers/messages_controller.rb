@@ -5,7 +5,13 @@ class MessagesController < ApplicationController
         @message.sent_by = current_user.id
         if @message.save
             SendMessageJob.perform_later(@message)
-            redirect_to request.referrer  
+            redirect_to request.referrer
+            User.all.each do |user|
+                Notification.create(recipient: user, user: current_user, action: "messaged", notifiable: user)
+                notification = Notification.last
+                ApplicationController.render partial: "notifications/#{notification.notifiable_type.underscore.pluralize}/#{notification.action}", locals: {notification: notification}, formats:[:html]
+                NotificationRelayJob.perform_later(notification)
+            end
         end
     end
 
