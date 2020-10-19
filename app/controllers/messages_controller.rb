@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
         @message = Message.new(message_params)
         @message.sent_by = current_user.id
         if @message.save
-            SendMessageJob.perform_later(@message)
+            SendMessageJob.perform_later(@message, current_user)
             # room.users.find_each do |user|
             #     if(user != @message.sent_by)
             #     Notification.create(recipient: user, user: current_user, action: "messaged", notifiable: user)

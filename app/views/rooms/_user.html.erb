@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" id="user-info" key= "<%=current_user.present? ? current_user.id.to_s : "" %>">
     <div class="card-body">
         <small>Logged in as: </small>
         <%if current_user%>
