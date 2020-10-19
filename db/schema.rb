@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_12_145437) do
+ActiveRecord::Schema.define(version: 2020_10_19_165640) do
 
   create_table "messages", force: :cascade do |t|
     t.text "text"
@@ -44,6 +44,15 @@ ActiveRecord::Schema.define(version: 2020_10_12_145437) do
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
+  create_table "relation_userrooms", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "room_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_relation_userrooms_on_room_id"
+    t.index ["user_id"], name: "index_relation_userrooms_on_user_id"
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -65,4 +74,6 @@ ActiveRecord::Schema.define(version: 2020_10_12_145437) do
 
   add_foreign_key "messages", "rooms"
   add_foreign_key "notifications", "users"
+  add_foreign_key "relation_userrooms", "rooms"
+  add_foreign_key "relation_userrooms", "users"
 end

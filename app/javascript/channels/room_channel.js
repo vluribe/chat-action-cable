@@ -17,6 +17,7 @@ document.addEventListener("turbolinks:load", ()=>{
       },
     
       received(data) {
+        console.log(data);
         const messages = document.getElementById("room-messages");
         messages.innerHTML = messages.innerHTML + data.html;
         messages.scrollTop = messages.scrollHeight;

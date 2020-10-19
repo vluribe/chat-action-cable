@@ -7,6 +7,6 @@ class SendMessageJob < ApplicationJob
       locals:{ message: message}
     )
 
-    ActionCable.server.broadcast("room_channel_#{message.room_id}", html: html)
+    ActionCable.server.broadcast("room_channel_#{message.room_id}", html: message)
   end
 end
