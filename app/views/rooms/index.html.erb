@@ -19,9 +19,7 @@
                     </a>
                 <%end%>
             </div>
-            <button class="btn btn-block btn-success mt-5"> 
-            <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
-            </button>
+            <%=button_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-block btn-success mt-5"%>
         </div>
         <div id="message-area" class="col-9 <%=@room.present? ? "" : "bg-success"%>">
             <%if @room.present?%>
@@ -34,7 +32,11 @@
                 </div>
                 <div id="room-messages">
                     <%@room.messages.each do |message|%>
-                        <%=render "messages/message", message: message%>
+                        <%if (message.sent_by == current_user.id)%>
+                            <%=render "messages/messageme", message: message%>
+                        <%else%>
+                            <%=render "messages/message", message: message%>
+                        <% end %>
                     <%end%>
                 </div>
                 <div class="chat-box">

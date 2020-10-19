@@ -6,7 +6,7 @@ class RoomsController < ApplicationController
     end
 
     def show
-        @rooms = Room.all
+        @rooms = current_user.rooms.all
         @room = Room.find_by(id: params[:id])
         if !@room 
             @error = "Room not found :("
@@ -16,14 +16,17 @@ class RoomsController < ApplicationController
 
     def create
         @room = Room.new(room_params)
-        if !(@room.valid?)
-            @ex = Room.find_by(name: @room.name)
-            redirect_to "/rooms/"+@ex.id.to_s
+        if @room.save
+            current_user.relation_userrooms.new(room:@room).save
+            redirect_to action: :show, id: @room.id
         else
-            if @room.save
-                redirect_to action: :show, id: @room.id
+            room_add = Room.find_by(name:room_params[:name])
+            relation = current_user.relation_userrooms.find_by(room_id: room_add.id)
+            if relation
+                redirect_to "/rooms/"+room_add.id.to_s
             else
-                redirect_to action: :index
+                current_user.relation_userrooms.new(room: room_add).save
+                redirect_to "/rooms/"+room_add.id.to_s
             end
         end
     end

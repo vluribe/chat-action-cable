@@ -6,8 +6,8 @@ document.addEventListener("turbolinks:load", ()=>{
   if(url[0]==="rooms" && url[1]){
     const messages = document.getElementById("room-messages");
     messages.scrollTop = messages.scrollHeight;
-    
-    consumer.subscriptions.create({channel:"RoomChannel", room_id:url[1]}, {
+    const user_id = document.getElementById("user-info").getAttribute("key");
+    consumer.subscriptions.create({channel:"RoomChannel", room_id:url[1], user_id: user_id}, {
       connected() {
         console.log(`Conected to channel: ${url[1]}`)
       },
@@ -17,6 +17,7 @@ document.addEventListener("turbolinks:load", ()=>{
       },
     
       received(data) {
+        console.log(data);
         const messages = document.getElementById("room-messages");
         messages.innerHTML = messages.innerHTML + data.html;
         messages.scrollTop = messages.scrollHeight;
