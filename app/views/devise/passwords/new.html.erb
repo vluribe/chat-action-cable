@@ -1,16 +1,41 @@
-<h2>Forgot your password?</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <meta charset="UTF-8">
+  <title>Daily UI | #001 - Sign Up</title>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+</head>
+<body class="align">
+
+  <div class="grid align__item">
+
+    <div class="register">
+
+      <img class="site__logo" width="84" height="84" src=<%= image_path('charla.svg') %> >
+
+      <h2>Forgot your password?</h2>
+
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="form__field">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"info@mailaddress.com" %>
+        </div>
+
+        <div class="form__field">
+          <%= f.submit "Send me reset password instructions" %>
+        </div>
+
+      <% end %>
+
+      <p><%= render "devise/shared/links" %></p>
+
+    </div>
+
   </div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</body>
+</html>
