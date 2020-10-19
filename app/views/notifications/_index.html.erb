@@ -4,15 +4,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
 <body>
-
-    <div class="dropdown">
-    <button class="dropbtn">Notifications</button>
-        <div class="dropdown-content">
-        <% @notifications.each do |notification|%>
-            <%= notification.user.email %> <%= notification.action %> you!
-        <%end%>
+    <% if @notifications %>
+        <div class="dropdown">
+            <button class="dropbtn">Notifications</button>
+            <div class="dropdown-content">
+                <% @notifications.each do |notification|%>
+                    <%= notification.user.email %> <%= notification.action %> you!
+                <%end%>
+            </div>
         </div>
-    </div>
-
+    <% end %>
 </body>
 </html>

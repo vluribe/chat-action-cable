@@ -6,14 +6,14 @@ class MessagesController < ApplicationController
         @message.sent_by = current_user.id
         if @message.save
             SendMessageJob.perform_later(@message, current_user)
-            # room.users.find_each do |user|
-            #     if(user != @message.sent_by)
-            #     Notification.create(recipient: user, user: current_user, action: "messaged", notifiable: user)
-            #     notification = Notification.last
-            #     ApplicationController.render partial: "notifications/#{notification.notifiable_type.underscore.pluralize}/#{notification.action}", locals: {notification: notification}, formats:[:html]
-            #     NotificationRelayJob.perform_later(notification)
-            #     end
-            # end
+            room.users.find_each do |user|
+                if(user != @message.sent_by)
+                Notification.create(recipient: user, user: current_user, action: "messaged", notifiable: user)
+                notification = Notification.last
+                ApplicationController.render partial: "notifications/#{notification.notifiable_type.underscore.pluralize}/#{notification.action}", locals: {notification: notification}, formats:[:html]
+                NotificationRelayJob.perform_later(notification)
+                end
+            end
             redirect_to request.referrer
         end
     end
