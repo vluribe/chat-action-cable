@@ -2,11 +2,12 @@ class RoomsController < ApplicationController
     before_action :authenticate_user!
     def index
         @rooms = Room.all
-        @notifications = Notification.where(recipient_id: current_user.id).find_each 
+        @notifications = Notification.where(recipient_id: current_user.id).order(created_at: :desc).find_each
     end
 
     def show
         @rooms = current_user.rooms.all
+        @notifications = Notification.where(recipient_id: current_user.id).order(created_at: :desc).find_each 
         @room = Room.find_by(id: params[:id])
         if !@room 
             @error = "Room not found :("
