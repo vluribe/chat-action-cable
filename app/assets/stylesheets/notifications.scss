@@ -19,9 +19,11 @@
   display: none;
   position: absolute;
   background-color: #f1f1f1;
-  min-width: 160px;
+  min-width: 200px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  overflow: auto;
+  max-height: 40vh;
 }
 
 .dropdown-content a {
@@ -36,3 +38,7 @@
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+.notification-text{
+  display: inline-flex;
+}

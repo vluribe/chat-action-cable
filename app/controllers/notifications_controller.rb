@@ -4,4 +4,14 @@ class NotificationsController < ApplicationController
         @notifications  =  Notification.where(recipient_id: current_user.id).find_each 
     end
 
+    def destroy
+        @notification = Notification.find(params[:id])
+        @notification.destroy
+        redirect_to root_path
+    end
+
+    def show
+        @notification = Notification.find(params[:id])
+    end
+
 end
